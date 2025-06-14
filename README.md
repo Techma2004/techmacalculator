@@ -12,7 +12,7 @@ A simple, interactive web calculator built with HTML, CSS, and JavaScript. This 
 
 ## Demo
 
-https://techma2004.github.io/techmacalculator-/
+https://techma2004.github.io/techmacalculator/
 
 ## Screenshots
 
