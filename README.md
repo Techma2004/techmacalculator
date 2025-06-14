@@ -16,7 +16,7 @@ https://techma2004.github.io/techmacalculator-/
 
 ## Screenshots
 
-![Calculator Screenshot](Pic.jpg) <!-- Replace with your actual image path -->
+![Calculator Screenshot](pic.jpg) <!-- Replace with your actual image path -->
 
 ## Getting Started
 
