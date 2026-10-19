@@ -1,38 +1,181 @@
-<!Doctype html>
-<html lan="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name"viewport" content="width=device-width,initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-<title>My calculator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta
+    name="description"
+    content="Techma scientific calculator with angle modes and calculation history."
+  >
+  <title>Techma — Scientific Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="engine.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-<div class="container">
-<div class="calculator">
-<input type="text" placeholder="0" id="output-onscreen"><br>
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Techma calculator home">
+        <span class="brand-mark" aria-hidden="true">t.</span>
+        <span>techma<span class="brand-subtitle">SCIENTIFIC CALCULATOR</span></span>
+      </a>
 
-<button onclick="clr()">cl</button>
-<button onclick="del()">Del</button>
-<button onclick="display('%')">%</button>
-<button onclick="display('/')">/</button><br>
-<button onclick="display('7')">7</button>
-<button onclick="display('8')">8</button>
-<button onclick="display('9')">9</button>
-<button onclick="display('*')">*</button><br>
-<button onclick="display('4')">4</button>
-<button onclick="display('5')">5</button>
-<button onclick="display('6')">6</button>
-<button onclick="display('-')">-</button><br>
-<button onclick="display('1')">1</button>
-<button onclick="display('2')">2</button>
-<button onclick="display('3')">3</button>
-<button onclick="display('+')">+</button><br>
-<button onclick="display('.')">.</button>
-<button onclick="display('0')">0</button>
-<button onclick="calculate()" class="equal">=</button>
-</div>
-</div>
-<script src="script.js"></script>
+<button
+        class="utility"
+        id="theme-toggle"
+        type="button"
+        aria-label="Switch to light theme"
+      >
+        Light theme
+      </button>
+    </header>
 
+<div class="workspace">
+      <section class="calculator panel" aria-label="Calculator">
+        <div class="toolbar">
+          <div class="mode-switch" role="group" aria-label="Angle unit">
+            <button type="button" data-mode="DEG" aria-pressed="true">
+              DEG
+            </button>
+            <button type="button" data-mode="RAD" aria-pressed="false">
+              RAD
+            </button>
+          </div>
+
+<button
+            type="button"
+            class="utility"
+            id="science-toggle"
+            aria-expanded="true"
+            aria-controls="scientific-keys"
+          >
+            Scientific
+          </button>
+        </div>
+
+<div class="display">
+          <div class="display-heading">
+            <label for="output-onscreen">EXPRESSION</label>
+            <span id="angle-label">DEGREES</span>
+          </div>
+
+<input
+            id="output-onscreen"
+            type="text"
+            placeholder="0"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            maxlength="500"
+            aria-describedby="input-help"
+            aria-invalid="false"
+          >
+
+<div class="result-row">
+            <output id="result" for="output-onscreen" aria-label="Result">0</output>
+            <button
+              type="button"
+              class="utility"
+              id="copy-result"
+              aria-label="Copy result"
+            >
+              Copy
+            </button>
+          </div>
+
+<p id="status" role="status" aria-live="polite" aria-atomic="true">
+            Ready when you are.
+          </p>
+        </div>
+
+<div class="scientific-grid" id="scientific-keys">
+          <button type="button" data-insert="sin(">sin</button>
+          <button type="button" data-insert="cos(">cos</button>
+          <button type="button" data-insert="tan(">tan</button>
+          <button type="button" data-insert="^" aria-label="Raise to a power">xʸ</button>
+          <button type="button" data-insert="^2" aria-label="Square">x²</button>
+
+<button type="button" data-insert="asin(" aria-label="Inverse sine">sin⁻¹</button>
+          <button type="button" data-insert="acos(" aria-label="Inverse cosine">cos⁻¹</button>
+          <button type="button" data-insert="atan(" aria-label="Inverse tangent">tan⁻¹</button>
+          <button type="button" data-insert="sqrt(" aria-label="Square root">√x</button>
+          <button type="button" data-insert="cbrt(" aria-label="Cube root">∛x</button>
+
+<button type="button" data-insert="log(" aria-label="Base ten logarithm">log</button>
+          <button type="button" data-insert="ln(" aria-label="Natural logarithm">ln</button>
+          <button type="button" data-insert="exp(" aria-label="Exponential">eˣ</button>
+          <button type="button" data-insert="!" aria-label="Factorial">x!</button>
+          <button type="button" data-insert="inv(" aria-label="Reciprocal">1/x</button>
+
+<button type="button" data-insert="pi" aria-label="Pi">π</button>
+          <button type="button" data-insert="e" aria-label="Euler's number">e</button>
+          <button type="button" data-insert="(" aria-label="Open parenthesis">(</button>
+          <button type="button" data-insert=")" aria-label="Close parenthesis">)</button>
+          <button type="button" data-insert="abs(" aria-label="Absolute value">|x|</button>
+        </div>
+
+<div class="keypad">
+          <button type="button" class="danger" data-action="clear" aria-label="Clear expression">AC</button>
+          <button type="button" data-action="delete" aria-label="Delete previous character">⌫</button>
+          <button type="button" data-insert="%" aria-label="Remainder">mod</button>
+          <button type="button" class="operator" data-insert="/" aria-label="Divide">÷</button>
+
+<button type="button" data-insert="7">7</button>
+          <button type="button" data-insert="8">8</button>
+          <button type="button" data-insert="9">9</button>
+          <button type="button" class="operator" data-insert="*" aria-label="Multiply">×</button>
+
+<button type="button" data-insert="4">4</button>
+          <button type="button" data-insert="5">5</button>
+          <button type="button" data-insert="6">6</button>
+          <button type="button" class="operator" data-insert="-" aria-label="Subtract">−</button>
+
+<button type="button" data-insert="1">1</button>
+          <button type="button" data-insert="2">2</button>
+          <button type="button" data-insert="3">3</button>
+          <button type="button" class="operator" data-insert="+" aria-label="Add">+</button>
+
+<button type="button" data-insert="Ans" aria-label="Previous answer">Ans</button>
+          <button type="button" data-insert="0">0</button>
+          <button type="button" data-insert=".">.</button>
+          <button type="button" class="equal" data-action="calculate" aria-label="Calculate">=</button>
+        </div>
+
+<p class="input-help" id="input-help">
+          Enter to calculate · Esc to clear · Use * for multiplication,
+          e.g. 2*pi · mod is remainder
+        </p>
+      </section>
+
+<aside class="history panel" aria-labelledby="history-title">
+        <div class="history-heading">
+          <div>
+            <span class="eyebrow">YOUR WORKSPACE</span>
+            <h1 id="history-title">History</h1>
+          </div>
+          <button type="button" class="utility" id="clear-history">Clear</button>
+        </div>
+
+<p class="history-caption">
+          Select a calculation to reuse its numeric result.
+        </p>
+
+<p class="empty-state" id="empty-history">
+          A little space for<br>your next big idea.
+        </p>
+
+<ol id="history-list" aria-label="Previous calculations"></ol>
+
+<div class="history-footer">
+          Stored only in this browser. Up to 20 calculations.
+        </div>
+      </aside>
+    </div>
+
+<footer class="page-footer">
+      Built for everyday math. Ready for more.
+    </footer>
+  </main>
 </body>
 </html>
